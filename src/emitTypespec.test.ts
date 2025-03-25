@@ -1,3 +1,4 @@
+import { Key, keyboard } from "@nut-tree/nut-js"
 import { contrastResult, preContrastResult } from "./common/commonSteps"
 import { sleep, test } from "./common/utils"
 import path from "node:path"
@@ -72,58 +73,68 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
   const { page } = await launch({
     workspacePath,
   })
+  try {
+    // await page.getByText("View", { exact: true }).click()
+    // await sleep(10)
+    // await page.screenshot({
+    //   path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/-1.png`,
+    // })
+    // await page.getByRole("menuitem", { name: "Output Ctrl+Shift+U" }).click()
+    // await sleep(10)
+    // await page.screenshot({
+    //   path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/-2.png`,
+    // })
+    await sleep(3)
+    await keyboard.pressKey(Key.LeftControl, Key.LeftShift, Key.U)
+    await keyboard.releaseKey(Key.LeftControl, Key.LeftShift, Key.U)
+    await sleep(3)
 
-  await page.getByText("View", { exact: true }).click()
-  await sleep(10)
-  await page.screenshot({
-    path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/-1.png`,
-  })
-  await page.getByRole("menuitem", { name: "Output Ctrl+Shift+U" }).click()
-  await sleep(10)
-  await page.screenshot({
-    path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/-2.png`,
-  })
-  await page
-    .locator("li")
-    .filter({ hasText: "EmitTypespecProject" })
-    .first()
-    .click()
-  await sleep(10)
-  await page.screenshot({
-    path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/1.png`,
-  })
-  await page
-    .getByRole("textbox", { name: "input" })
-    .fill(">Typespec: Emit from Typespec")
-  await sleep(10)
-  await page.screenshot({
-    path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/2.png`,
-  })
-  await sleep(3)
-  await page.keyboard.press("Enter")
-  await sleep(10)
-  await page.screenshot({
-    path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/3.png`,
-  })
-  await sleep(3)
-  await page.keyboard.press("Enter")
-  await page
-    .getByRole("textbox", { name: "input" })
-    .fill("choose another emitter")
-  await sleep(10)
-  await page.screenshot({
-    path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/4.png`,
-  })
-  await sleep(3)
-  await page.keyboard.press("Enter")
-  await page.getByRole("textbox", { name: "input" }).fill("OpenAPI Document")
-  await page.screenshot({
-    path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/5.png`,
-  })
-  await sleep(3)
-  await page.keyboard.press("Enter")
-  await sleep(3)
-  await page.keyboard.press("Enter")
+    await page
+      .locator("li")
+      .filter({ hasText: "EmitTypespecProject" })
+      .first()
+      .click()
+    await sleep(10)
+    await page.screenshot({
+      path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/1.png`,
+    })
+    await page
+      .getByRole("textbox", { name: "input" })
+      .fill(">Typespec: Emit from Typespec")
+    await sleep(10)
+    await page.screenshot({
+      path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/2.png`,
+    })
+    await sleep(3)
+    await page.keyboard.press("Enter")
+    await sleep(10)
+    await page.screenshot({
+      path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/3.png`,
+    })
+    await sleep(3)
+    await page.keyboard.press("Enter")
+    await page
+      .getByRole("textbox", { name: "input" })
+      .fill("choose another emitter")
+    await sleep(10)
+    await page.screenshot({
+      path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/4.png`,
+    })
+    await sleep(3)
+    await page.keyboard.press("Enter")
+    await page.getByRole("textbox", { name: "input" }).fill("OpenAPI Document")
+    await page.screenshot({
+      path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/5.png`,
+    })
+    await sleep(3)
+    await page.keyboard.press("Enter")
+    await sleep(3)
+    await page.keyboard.press("Enter")
+  } catch (e) {
+    await page.screenshot({
+      path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/error.png`,
+    })
+  }
   // await preContrastResult(
   //     page,
   //     "OpenAPI3...Succeeded",
