@@ -37,7 +37,6 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
     .filter({ hasText: "TypeSpec: Emit from TypeSpec" })
     .click()
   await sleep(3)
-  await page.pause()
   await page
     .locator("label div")
     .filter({ hasText: /TextTranslation/ })
