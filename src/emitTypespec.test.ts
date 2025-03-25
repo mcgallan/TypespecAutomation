@@ -7,13 +7,15 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
   const { page } = await launch({
     workspacePath,
   })
-
   await page
     .getByRole("treeitem", { name: "Azure.AI.TextTranslation" })
     .locator("a")
-    .click({
-      button: "right",
-    })
+    .click()
+  await sleep(10)
+
+  await page.getByRole("treeitem", { name: "main.tsp" }).locator("a").click({
+    button: "right",
+  })
   await sleep(10)
   await page.screenshot({
     path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/1.png`,
