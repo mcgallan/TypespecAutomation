@@ -7,42 +7,22 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
   const { page } = await launch({
     workspacePath,
   })
+
   await page
-    .locator("li")
-    .filter({ hasText: "EmitTypespecProject" })
-    .first()
-    .click()
+    .getByRole("treeitem", { name: "Azure.AI.TextTranslation" })
+    .locator("a")
+    .click({
+      button: "right",
+    })
   await sleep(10)
   await page.screenshot({
     path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/1.png`,
   })
-  await page
-    .getByRole("textbox", { name: "input" })
-    .fill(">Typespec: Emit From Typespec")
+  await page.getByRole("menuitem", { name: "Emit from TypeSpec" }).click()
+
   await sleep(10)
   await page.screenshot({
     path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/2.png`,
-  })
-
-  await page
-    .locator("a")
-    .filter({ hasText: "TypeSpec: Emit from TypeSpec" })
-    .click()
-
-  await sleep(10)
-  await page.screenshot({
-    path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/3.png`,
-  })
-
-  await page
-    .locator("label div")
-    .filter({ hasText: /TextTranslation/ })
-    .first()
-    .click()
-
-  await sleep(10)
-  await page.screenshot({
-    path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/10.png`,
   })
 
   await page
@@ -52,7 +32,7 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
     .click()
   await sleep(10)
   await page.screenshot({
-    path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/5.png`,
+    path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/3.png`,
   })
 
   await page
@@ -61,7 +41,7 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
     .click()
   await sleep(10)
   await page.screenshot({
-    path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/6.png`,
+    path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/4.png`,
   })
 
   await page
