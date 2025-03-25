@@ -40,7 +40,7 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
   await page
     .locator("label div")
     .filter({ hasText: /TextTranslation/ })
-    .nth(3)
+    .first()
     .click()
 
   await sleep(3)
