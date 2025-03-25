@@ -27,12 +27,16 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
     .first()
     .click()
   await sleep(4)
-  await page.screenshot({ path: "./1.png" })
+  await page.screenshot({
+    path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/1.png`,
+  })
   await page
     .getByRole("textbox", { name: "input" })
     .fill(">Typespec: Emit From Typespec")
   await sleep(4)
-  await page.screenshot({ path: "./2.png" })
+  await page.screenshot({
+    path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/2.png`,
+  })
 
   await page
     .locator("a")
@@ -40,7 +44,9 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
     .click()
 
   await sleep(4)
-  await page.screenshot({ path: "./3.png" })
+  await page.screenshot({
+    path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/3.png`,
+  })
 
   await page
     .locator("label div")
@@ -49,7 +55,9 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
     .click()
 
   await sleep(4)
-  await page.screenshot({ path: "./4.png" })
+  await page.screenshot({
+    path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/4.png`,
+  })
 
   await page
     .getByRole("option")
@@ -57,14 +65,18 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
     .filter({ hasText: /Choose another emitter/ })
     .click()
   await sleep(4)
-  await page.screenshot({ path: "./5.png" })
+  await page.screenshot({
+    path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/5.png`,
+  })
 
   await page
     .locator("a")
     .filter({ hasText: /OpenAPI Document/ })
     .click()
   await sleep(4)
-  await page.screenshot({ path: "./6.png" })
+  await page.screenshot({
+    path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/6.png`,
+  })
 
   await page
     .locator("a")
