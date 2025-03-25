@@ -72,6 +72,17 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
   const { page } = await launch({
     workspacePath,
   })
+
+  await page.getByText("View", { exact: true }).click()
+  await sleep(10)
+  await page.screenshot({
+    path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/-1.png`,
+  })
+  await page.getByRole("menuitem", { name: "Output Ctrl+Shift+U" }).click()
+  await sleep(10)
+  await page.screenshot({
+    path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/-2.png`,
+  })
   await page
     .locator("li")
     .filter({ hasText: "EmitTypespecProject" })
