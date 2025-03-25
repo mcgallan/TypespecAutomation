@@ -1,20 +1,6 @@
-import { beforeEach } from "vitest"
-import {
-  contrastResult,
-  start,
-  selectFolder,
-  preContrastResult,
-  closeVscode,
-  notEmptyFolderContinue,
-} from "./common/commonSteps"
-import { preCheckExtension, retry, sleep, test } from "./common/utils"
-import fs from "node:fs"
+import { contrastResult, preContrastResult } from "./common/commonSteps"
+import { sleep, test } from "./common/utils"
 import path from "node:path"
-import {
-  inputProjectName,
-  selectEmitters,
-  selectTemplate,
-} from "./common/createSteps"
 
 test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
   const workspacePath = path.resolve(__dirname, "../EmitTypespecProject")
@@ -26,14 +12,14 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
     .filter({ hasText: "EmitTypespecProject" })
     .first()
     .click()
-  await sleep(4)
+  await sleep(10)
   await page.screenshot({
     path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/1.png`,
   })
   await page
     .getByRole("textbox", { name: "input" })
     .fill(">Typespec: Emit From Typespec")
-  await sleep(4)
+  await sleep(10)
   await page.screenshot({
     path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/2.png`,
   })
@@ -43,7 +29,7 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
     .filter({ hasText: "TypeSpec: Emit from TypeSpec" })
     .click()
 
-  await sleep(4)
+  await sleep(10)
   await page.screenshot({
     path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/3.png`,
   })
@@ -54,9 +40,9 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
     .first()
     .click()
 
-  await sleep(4)
+  await sleep(10)
   await page.screenshot({
-    path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/4.png`,
+    path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/10.png`,
   })
 
   await page
@@ -64,7 +50,7 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
     .locator("a")
     .filter({ hasText: /Choose another emitter/ })
     .click()
-  await sleep(4)
+  await sleep(10)
   await page.screenshot({
     path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/5.png`,
   })
@@ -73,7 +59,7 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
     .locator("a")
     .filter({ hasText: /OpenAPI Document/ })
     .click()
-  await sleep(4)
+  await sleep(10)
   await page.screenshot({
     path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/6.png`,
   })
