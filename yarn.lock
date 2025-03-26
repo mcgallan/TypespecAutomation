@@ -1541,7 +1541,7 @@
   resolved "https://registry.npmmirror.com/@typespec/http/-/http-0.67.1.tgz#26cf4acf0c312d000b294eb2654b256987cb2283"
   integrity sha512-pkLFdKLA5ObCptUuwL8mhiy6EqVbqmtvHK89zqiTfYYGw2qm76+EUHaK0P/g2aAmjcwlrDGhJ0EhzbVp87H0mg==
 
-"@typespec/openapi3@^0.67.1":
+"@typespec/openapi3@0.67.1", "@typespec/openapi3@^0.67.1":
   version "0.67.1"
   resolved "https://registry.npmmirror.com/@typespec/openapi3/-/openapi3-0.67.1.tgz#b98216e6f41f0fb1e7ec08cb2d99a30cdffe9c1e"
   integrity sha512-Qe6kRQmet3bK2VPAK3IDK3JA0s1pNCJpDmrbBRCKxstvYWGwdTEVjiWRJl4kn17i4T51bxUrORKd9Si6R4M7Kg==

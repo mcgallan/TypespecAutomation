@@ -119,7 +119,7 @@ async function installExtension(page: Page) {
     .locator("a")
     .click()
   await sleep(3)
-  await page.getByRole("textbox").fill("Typespec")
+  await page.keyboard.type("Typespec")
   await sleep(3)
   await page
     .getByLabel(/TypeSpec/)

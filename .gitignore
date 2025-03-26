@@ -13,3 +13,5 @@ tests-logs-*
 ImportTypespecProjectOpenApi3/*.tsp
 CreateTypespecProject/*
 !CreateTypespecProject/placeholder.txt
+EmitTypespecProject/Azure.AI.TextTranslation/output
+EmitTypespecProject/Azure.AI.DocumentTranslation/output

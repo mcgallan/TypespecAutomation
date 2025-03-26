@@ -61,24 +61,6 @@ const test = baseTest.extend<{
   },
 })
 
-async function preCheckExtension() {
-  const extensionsDir = path.resolve(__dirname, "../../extension")
-  if (fs.existsSync(extensionsDir)) {
-    let hasExtension = false
-    for (const file of fs.readdirSync(extensionsDir)) {
-      if (file.includes("typespec")) {
-        hasExtension = true
-        break
-      }
-    }
-    if (!hasExtension) {
-      throw new Error("Failed to find extension file")
-    }
-  } else {
-    throw new Error("Failed to find extension directory")
-  }
-}
-
 async function sleep(s: number) {
   return new Promise((resolve) => setTimeout(resolve, s * 1000))
 }
@@ -99,4 +81,4 @@ async function retry(
   throw new Error(errMessage)
 }
 
-export { sleep, test, retry, preCheckExtension }
+export { sleep, test, retry }

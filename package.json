@@ -8,11 +8,12 @@
   "scripts": {
     "test": "vitest --root src"
   },
-  "devDependencies": {
+  "dependencies": {
     "@nut-tree/nut-js": "^3.1.2",
     "@playwright/test": "^1.42.1",
     "@types/node": "^20.12.8",
     "@types/screenshot-desktop": "^1.12.3",
+    "screenshot-desktop": "^1.15.1",
     "@vscode/test-electron": "^2.3.9",
     "electron": "^35.0.1",
     "typescript": "^5.6.2",
@@ -34,15 +35,12 @@
     "@typespec/sse": "0.67.1",
     "@typespec/events": "0.67.1",
     "@typespec/openapi": "0.67.1",
+    "@typespec/openapi3": "0.67.1",
     "@typespec/prettier-plugin-typespec": "0.67.1",
     "@typespec/rest": "0.67.1",
     "@typespec/streams": "0.67.1",
     "@typespec/versioning": "0.67.1",
     "@typespec/xml": "0.67.1",
-    "oav": "^3.5.1",
-    "prettier": "~3.5.3"
-  },
-  "dependencies": {
-    "screenshot-desktop": "^1.15.1"
+    "oav": "^3.5.1"
   }
 }

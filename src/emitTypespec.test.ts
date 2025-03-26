@@ -1,5 +1,5 @@
-import { Key, keyboard } from "@nut-tree/nut-js"
 import {
+  closeVscode,
   contrastResult,
   installExtension,
   preContrastResult,
@@ -138,4 +138,5 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
       "./Azure.AI.TextTranslation/tsp-output/@typespec/openapi3"
     )
   )
+  await closeVscode(page)
 })
