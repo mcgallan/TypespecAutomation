@@ -78,53 +78,33 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
     workspacePath,
   })
   await installExtension(page)
-  try {
-    await page
-      .locator("li")
-      .filter({ hasText: "EmitTypespecProject" })
-      .first()
-      .click()
-    await sleep(10)
-    await page.screenshot({
-      path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/1.png`,
-    })
-    await page
-      .getByRole("textbox", { name: "input" })
-      .fill(">Typespec: Emit from Typespec")
-    await sleep(10)
-    await page.screenshot({
-      path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/2.png`,
-    })
-    await sleep(3)
-    await page.keyboard.press("Enter")
-    await sleep(10)
-    await page.screenshot({
-      path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/3.png`,
-    })
-    await sleep(3)
-    await page.keyboard.press("Enter")
-    await page
-      .getByRole("textbox", { name: "input" })
-      .fill("choose another emitter")
-    await sleep(10)
-    await page.screenshot({
-      path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/4.png`,
-    })
-    await sleep(3)
-    await page.keyboard.press("Enter")
-    await page.getByRole("textbox", { name: "input" }).fill("OpenAPI Document")
-    await page.screenshot({
-      path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/5.png`,
-    })
-    await sleep(3)
-    await page.keyboard.press("Enter")
-    await sleep(3)
-    await page.keyboard.press("Enter")
-  } catch (e) {
-    await page.screenshot({
-      path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/error.png`,
-    })
-  }
+  await page
+    .locator("li")
+    .filter({ hasText: "EmitTypespecProject" })
+    .first()
+    .click()
+  await sleep(10)
+  await page
+    .getByRole("textbox", { name: "input" })
+    .fill(">Typespec: Emit from Typespec")
+  await sleep(10)
+  await sleep(3)
+  await page.keyboard.press("Enter")
+  await sleep(10)
+  await sleep(3)
+  await page.keyboard.press("Enter")
+  await page
+    .getByRole("textbox", { name: "input" })
+    .fill("choose another emitter")
+  await sleep(10)
+  await sleep(3)
+  await page.keyboard.press("Enter")
+  await page.getByRole("textbox", { name: "input" }).fill("OpenAPI Document")
+  await sleep(3)
+  await page.keyboard.press("Enter")
+  await sleep(3)
+  await page.keyboard.press("Enter")
+
   await preContrastResult(
     page,
     "OpenAPI3...Succeeded",

@@ -43,10 +43,14 @@ test("CreateTypespec-Generic REST API", async ({ launch }) => {
   await selectTemplate(page, "Generic REST API")
   await inputProjectName(page)
   await selectEmitters(page, ["OpenAPI"])
+  await page.screenshot({
+    path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY}/createError.png`,
+  })
   await preContrastResult(
     page,
     "Project created!",
-    "Failed to create project Successful"
+    "Failed to create project Successful",
+    [10, 10]
   )
   await contrastResult(
     [

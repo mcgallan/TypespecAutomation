@@ -50,6 +50,9 @@ test("ImportTypespecFromOpenApi3", async ({ launch }) => {
     command: "Import TypeSpec from Openapi3",
   })
   await selectFolder()
+  await page.screenshot({
+    path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY}/importError.png`,
+  })
   await notEmptyFolderContinue(page)
   await selectFolder("openapi.3.0.yaml")
   await preContrastResult(

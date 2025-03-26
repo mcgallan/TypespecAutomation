@@ -2,7 +2,6 @@ import { Page } from "@playwright/test"
 import { retry, sleep } from "./utils"
 import { keyboard, Key } from "@nut-tree/nut-js"
 import fs from "node:fs"
-import screenshot from "screenshot-desktop"
 
 async function preContrastResult(
   page: Page,
@@ -37,33 +36,18 @@ async function start(
   { folderName, command }: { folderName: string; command: string }
 ) {
   await page.locator("li").filter({ hasText: folderName }).first().click()
-  let img = await page.screenshot()
-  let buffer = Buffer.from(img)
-  fs.writeFileSync(
-    `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/top${Date.now()}.png`,
-    buffer
-  )
+
   await page
     .getByRole("textbox", { name: "input" })
     .first()
     .fill(`>Typespec: ${command}`)
   await sleep(10)
-  img = await page.screenshot()
-  buffer = Buffer.from(img)
-  fs.writeFileSync(
-    `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/input${Date.now()}.png`,
-    buffer
-  )
+
   const listForCreate = page
     .locator("a")
     .filter({ hasText: `TypeSpec: ${command}` })
     .first()
-  img = await page.screenshot()
-  buffer = Buffer.from(img)
-  fs.writeFileSync(
-    `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/item${Date.now()}.png`,
-    buffer
-  )
+
   await retry(
     5,
     async () => {
@@ -76,19 +60,7 @@ async function start(
 }
 
 async function selectFolder(file: string = "") {
-  let img = await screenshot()
-  let buffer = Buffer.from(img)
-  fs.writeFileSync(
-    `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/folder${Date.now()}.png`,
-    buffer
-  )
-  await sleep(30)
-  img = await screenshot()
-  buffer = Buffer.from(img)
-  fs.writeFileSync(
-    `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/folder-two${Date.now()}.png`,
-    buffer
-  )
+  await sleep(10)
   if (file) {
     await keyboard.pressKey(Key.CapsLock)
     await keyboard.type(file)
