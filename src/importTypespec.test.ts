@@ -62,7 +62,7 @@ test("ImportTypespecFromOpenApi3", async ({ launch }) => {
   await selectFolder("openapi.3.0.yaml")
   await sleep(3)
   fs.writeFileSync(
-    `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/importError.png`,
+    `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/importError2.png`,
     buffer
   )
   await preContrastResult(
