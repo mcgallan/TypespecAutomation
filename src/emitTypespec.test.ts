@@ -118,5 +118,4 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
       "./Azure.AI.TextTranslation/tsp-output/@typespec/openapi3"
     )
   )
-  await closeVscode(page)
 })

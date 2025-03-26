@@ -61,6 +61,9 @@ test("ImportTypespecFromOpenApi3", async ({ launch }) => {
   await notEmptyFolderContinue(page)
   await selectFolder("openapi.3.0.yaml")
   await sleep(3)
+  img = await screenshot()
+  buffer = Buffer.from(img)
+  await sleep(3)
   fs.writeFileSync(
     `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/importError2.png`,
     buffer
@@ -72,5 +75,4 @@ test("ImportTypespecFromOpenApi3", async ({ launch }) => {
     [10, 3]
   )
   await contrastResult(["openapi.3.0.yaml", "main.tsp"], workspacePath)
-  await closeVscode(page)
 })

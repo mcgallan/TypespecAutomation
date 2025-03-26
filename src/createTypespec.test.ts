@@ -60,7 +60,6 @@ test("CreateTypespec-Generic REST API", async ({ launch }) => {
     ],
     workspacePath
   )
-  await closeVscode(page)
 })
 
 // test("CreateTypespec-Special scenarios-button", async ({ launch }) => {
