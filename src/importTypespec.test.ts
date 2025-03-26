@@ -1,5 +1,5 @@
 import { beforeEach } from "vitest"
-import { test } from "./common/utils"
+import { sleep, test } from "./common/utils"
 import fs from "node:fs"
 import path from "node:path"
 import {
@@ -11,6 +11,7 @@ import {
   selectFolder,
   start,
 } from "./common/commonSteps"
+import screenshot from "screenshot-desktop"
 
 beforeEach(() => {
   const importTypespec = path.resolve(
@@ -50,11 +51,20 @@ test("ImportTypespecFromOpenApi3", async ({ launch }) => {
     command: "Import TypeSpec from Openapi3",
   })
   await selectFolder()
-  await page.screenshot({
-    path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY}/importError.png`,
-  })
+  let img = await screenshot()
+  let buffer = Buffer.from(img)
+  await sleep(3)
+  fs.writeFileSync(
+    `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/importError.png`,
+    buffer
+  )
   await notEmptyFolderContinue(page)
   await selectFolder("openapi.3.0.yaml")
+  await sleep(3)
+  fs.writeFileSync(
+    `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/importError.png`,
+    buffer
+  )
   await preContrastResult(
     page,
     "OpenAPI succeeded",

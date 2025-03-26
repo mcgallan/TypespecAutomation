@@ -4540,7 +4540,7 @@ sax@>=0.6.0:
 
 screenshot-desktop@^1.15.1:
   version "1.15.1"
-  resolved "https://registry.npmmirror.com/screenshot-desktop/-/screenshot-desktop-1.15.1.tgz"
+  resolved "https://registry.npmmirror.com/screenshot-desktop/-/screenshot-desktop-1.15.1.tgz#3fa91d25557daf5022d9add82acc8a2b20f0bc2e"
   integrity sha512-4j9bDZSFnkRqH53bAw5W+ZhdGKiTUcUDohO6NZjL6QSC/6AXbhUqJ9YXygjHrYcSOUD4IcLty6uQ1ES7PSsomg==
   dependencies:
     temp "^0.9.4"
