@@ -72,51 +72,51 @@ import path from "node:path"
 //   )
 // })
 
-// test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
-//   const workspacePath = path.resolve(__dirname, "../EmitTypespecProject")
-//   const { page } = await launch({
-//     workspacePath,
-//   })
-//   await installExtension(page)
-//   await page
-//     .locator("li")
-//     .filter({ hasText: "EmitTypespecProject" })
-//     .first()
-//     .click()
-//   await sleep(10)
-//   await page
-//     .getByRole("textbox", { name: "input" })
-//     .fill(">Typespec: Emit from Typespec")
-//   await sleep(10)
-//   await sleep(3)
-//   await page.keyboard.press("Enter")
-//   await sleep(10)
-//   await sleep(3)
-//   await page.keyboard.press("Enter")
-//   await page
-//     .getByRole("textbox", { name: "input" })
-//     .fill("choose another emitter")
-//   await sleep(10)
-//   await sleep(3)
-//   await page.keyboard.press("Enter")
-//   await page.getByRole("textbox", { name: "input" }).fill("OpenAPI Document")
-//   await sleep(3)
-//   await page.keyboard.press("Enter")
-//   await sleep(3)
-//   await page.keyboard.press("Enter")
+test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
+  const workspacePath = path.resolve(__dirname, "../EmitTypespecProject")
+  const { page } = await launch({
+    workspacePath,
+  })
+  await installExtension(page)
+  await page
+    .locator("li")
+    .filter({ hasText: "EmitTypespecProject" })
+    .first()
+    .click()
+  await sleep(10)
+  await page
+    .getByRole("textbox", { name: "input" })
+    .fill(">Typespec: Emit from Typespec")
+  await sleep(10)
+  await sleep(3)
+  await page.keyboard.press("Enter")
+  await sleep(10)
+  await sleep(3)
+  await page.keyboard.press("Enter")
+  await page
+    .getByRole("textbox", { name: "input" })
+    .fill("choose another emitter")
+  await sleep(10)
+  await sleep(3)
+  await page.keyboard.press("Enter")
+  await page.getByRole("textbox", { name: "input" }).fill("OpenAPI Document")
+  await sleep(3)
+  await page.keyboard.press("Enter")
+  await sleep(3)
+  await page.keyboard.press("Enter")
 
-//   await preContrastResult(
-//     page,
-//     "OpenAPI3...Succeeded",
-//     "Failed to emit project Successful",
-//     [5, 2]
-//   )
-//   await contrastResult(
-//     ["openapi.3.0.yaml"],
-//     path.resolve(
-//       workspacePath,
-//       "./Azure.AI.TextTranslation/tsp-output/@typespec/openapi3"
-//     )
-//   )
-//   await closeVscode(page)
-// })
+  await preContrastResult(
+    page,
+    "OpenAPI3...Succeeded",
+    "Failed to emit project Successful",
+    [5, 2]
+  )
+  await contrastResult(
+    ["openapi.3.0.yaml"],
+    path.resolve(
+      workspacePath,
+      "./Azure.AI.TextTranslation/tsp-output/@typespec/openapi3"
+    )
+  )
+  await closeVscode(page)
+})

@@ -29,42 +29,42 @@ beforeEach(() => {
   }
 })
 
-// test("CreateTypespec-Generic REST API", async ({ launch }) => {
-//   const workspacePath = path.resolve(__dirname, "../CreateTypespecProject")
-//   const { page } = await launch({
-//     workspacePath,
-//   })
-//   await installExtension(page)
-//   await start(page, {
-//     folderName: "CreateTypespecProject",
-//     command: "Create Typespec Project",
-//   })
-//   await selectFolder()
-//   await selectTemplate(page, "Generic REST API")
-//   await inputProjectName(page)
-//   await selectEmitters(page, ["OpenAPI"])
-//   await page.screenshot({
-//     path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY}/createError.png`,
-//   })
-//   await preContrastResult(
-//     page,
-//     "Project created!",
-//     "Failed to create project Successful",
-//     [10, 10]
-//   )
-//   await contrastResult(
-//     [
-//       ".gitignore",
-//       "main.tsp",
-//       "node_modules",
-//       "package-lock.json",
-//       "package.json",
-//       "tspconfig.yaml",
-//     ],
-//     workspacePath
-//   )
-//   await closeVscode(page)
-// })
+test("CreateTypespec-Generic REST API", async ({ launch }) => {
+  const workspacePath = path.resolve(__dirname, "../CreateTypespecProject")
+  const { page } = await launch({
+    workspacePath,
+  })
+  await installExtension(page)
+  await start(page, {
+    folderName: "CreateTypespecProject",
+    command: "Create Typespec Project",
+  })
+  await selectFolder()
+  await selectTemplate(page, "Generic REST API")
+  await inputProjectName(page)
+  await selectEmitters(page, ["OpenAPI"])
+  await page.screenshot({
+    path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY}/createError.png`,
+  })
+  await preContrastResult(
+    page,
+    "Project created!",
+    "Failed to create project Successful",
+    [10, 10]
+  )
+  await contrastResult(
+    [
+      ".gitignore",
+      "main.tsp",
+      "node_modules",
+      "package-lock.json",
+      "package.json",
+      "tspconfig.yaml",
+    ],
+    workspacePath
+  )
+  await closeVscode(page)
+})
 
 // test("CreateTypespec-Special scenarios-button", async ({ launch }) => {
 //   const { page } = await launch({ workspacePath: "./test" })
