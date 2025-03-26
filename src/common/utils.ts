@@ -1,8 +1,7 @@
-import { Page, Project } from "@playwright/test"
+import { Page, _electron } from "@playwright/test"
 import fs from "node:fs"
 import os from "node:os"
 import path, { resolve } from "node:path"
-import { _electron } from "@playwright/test"
 import { test as baseTest, inject } from "vitest"
 
 interface Context {
@@ -48,7 +47,7 @@ const test = baseTest.extend<{
           "--skip-welcome",
           "--skip-release-notes",
           "--disable-workspace-trust",
-          `--extensions-dir=${path.resolve(__dirname, "../../extension")}`,
+          `--extensions-dir=${path.resolve(tempDir, "extensions")}`,
           `--user-data-dir=${path.resolve(tempDir, "user-data")}`,
           `--folder-uri=file:${path.resolve(workspacePath)}`,
         ].filter((v): v is string => !!v),

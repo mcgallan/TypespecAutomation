@@ -113,6 +113,27 @@ async function notEmptyFolderContinue(page: Page) {
   await yesBtn.click()
 }
 
+async function installExtension(page: Page) {
+  await page
+    .getByRole("tab", { name: /Extensions/ })
+    .locator("a")
+    .click()
+  await sleep(3)
+  await page.getByRole("textbox").fill("Typespec")
+  await sleep(3)
+  await page
+    .getByLabel(/TypeSpec/)
+    .getByRole("button", { name: "Install" })
+    .click()
+  await sleep(3)
+  await page.getByRole("button", { name: "Trust Publisher & Install" }).click()
+  await sleep(10)
+  await page
+    .getByRole("tab", { name: /Explorer/ })
+    .locator("a")
+    .click()
+}
+
 export {
   start,
   contrastResult,
@@ -120,4 +141,5 @@ export {
   preContrastResult,
   closeVscode,
   notEmptyFolderContinue,
+  installExtension,
 }

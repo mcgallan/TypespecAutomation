@@ -1,5 +1,7 @@
 import { download } from "@vscode/test-electron"
 import type { GlobalSetupContext } from "vitest/node"
+import path from "path"
+import { test } from "./utils"
 
 export default async function downloadVscode({ provide }: GlobalSetupContext) {
   if (process.env.VSCODE_E2E_DOWNLOAD_PATH)

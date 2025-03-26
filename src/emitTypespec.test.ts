@@ -1,5 +1,9 @@
 import { Key, keyboard } from "@nut-tree/nut-js"
-import { contrastResult, preContrastResult } from "./common/commonSteps"
+import {
+  contrastResult,
+  installExtension,
+  preContrastResult,
+} from "./common/commonSteps"
 import { sleep, test } from "./common/utils"
 import path from "node:path"
 
@@ -73,22 +77,8 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
   const { page } = await launch({
     workspacePath,
   })
+  await installExtension(page)
   try {
-    // await page.getByText("View", { exact: true }).click()
-    // await sleep(10)
-    // await page.screenshot({
-    //   path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/-1.png`,
-    // })
-    // await page.getByRole("menuitem", { name: "Output Ctrl+Shift+U" }).click()
-    // await sleep(10)
-    // await page.screenshot({
-    //   path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/-2.png`,
-    // })
-    await sleep(3)
-    await keyboard.pressKey(Key.LeftControl, Key.LeftShift, Key.U)
-    await keyboard.releaseKey(Key.LeftControl, Key.LeftShift, Key.U)
-    await sleep(3)
-
     await page
       .locator("li")
       .filter({ hasText: "EmitTypespecProject" })
@@ -135,17 +125,17 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
       path: `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/error.png`,
     })
   }
-  // await preContrastResult(
-  //     page,
-  //     "OpenAPI3...Succeeded",
-  //     "Failed to emit project Successful",
-  //     [5, 2]
-  //   )
-  //   await contrastResult(
-  //     ["openapi.3.0.yaml"],
-  //     path.resolve(
-  //       workspacePath,
-  //       "./Azure.AI.TextTranslation/tsp-output/@typespec/openapi3"
-  //     )
-  //   )
+  await preContrastResult(
+    page,
+    "OpenAPI3...Succeeded",
+    "Failed to emit project Successful",
+    [5, 2]
+  )
+  await contrastResult(
+    ["openapi.3.0.yaml"],
+    path.resolve(
+      workspacePath,
+      "./Azure.AI.TextTranslation/tsp-output/@typespec/openapi3"
+    )
+  )
 })
