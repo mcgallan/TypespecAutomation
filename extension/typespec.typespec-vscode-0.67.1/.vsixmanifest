@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 	<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
 		<Metadata>
-			<Identity Language="en-US" Id="typespec-vscode" Version="0.66.0" Publisher="typespec" />
+			<Identity Language="en-US" Id="typespec-vscode" Version="0.67.1" Publisher="typespec" />
 			<DisplayName>TypeSpec</DisplayName>
 			<Description xml:space="preserve">TypeSpec language support for VS Code</Description>
 			<Tags>typespec,snippet,TypeSpec,TYPESPEC,__ext_tsp,markdown-typespec,__web_extension</Tags>
@@ -9,7 +9,7 @@
 			<GalleryFlags>Public</GalleryFlags>
 			
 			<Properties>
-				<Property Id="Microsoft.VisualStudio.Code.Engine" Value="^1.97.0" />
+				<Property Id="Microsoft.VisualStudio.Code.Engine" Value="^1.98.0" />
 				<Property Id="Microsoft.VisualStudio.Code.ExtensionDependencies" Value="" />
 				<Property Id="Microsoft.VisualStudio.Code.ExtensionPack" Value="" />
 				<Property Id="Microsoft.VisualStudio.Code.ExtensionKind" Value="workspace,web" />
