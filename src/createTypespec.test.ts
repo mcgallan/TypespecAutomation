@@ -25,7 +25,7 @@ beforeEach(() => {
       fs.rmSync(filePath, { recursive: true, force: true })
     }
   } else {
-    throw new Error("Failed to find workspace directory")
+    fs.mkdirSync(dir, { recursive: true })
   }
 })
 
