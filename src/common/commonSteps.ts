@@ -90,14 +90,11 @@ async function installExtension(page: Page) {
     .getByRole("tab", { name: /Extensions/ })
     .locator("a")
     .click()
-  await sleep(3)
   await page.keyboard.type("Typespec")
-  await sleep(3)
   await page
     .getByLabel(/TypeSpec/)
     .getByRole("button", { name: "Install" })
     .click()
-  await sleep(3)
   await page.getByRole("button", { name: "Trust Publisher & Install" }).click()
   await sleep(10)
   await page

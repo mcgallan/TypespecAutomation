@@ -3,7 +3,13 @@ import {
   contrastResult,
   installExtension,
   preContrastResult,
+  start,
 } from "./common/commonSteps"
+import {
+  emitSelectLanguageForOpenapi,
+  emitSelectProject,
+  emitSelectType,
+} from "./common/emiSteps"
 import { sleep, test } from "./common/utils"
 import path from "node:path"
 
@@ -78,32 +84,20 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
     workspacePath,
   })
   await installExtension(page)
+  await start(page, {
+    folderName: "EmitTypespecProject",
+    command: "Emit from Typespec",
+  })
+  await emitSelectProject(page, "TextTranslation")
+
   await page
-    .locator("li")
-    .filter({ hasText: "EmitTypespecProject" })
-    .first()
+    .getByRole("option", { name: "Choose another emitter" })
+    .locator("a")
     .click()
-  await sleep(10)
-  await page
-    .getByRole("textbox", { name: "input" })
-    .fill(">Typespec: Emit from Typespec")
-  await sleep(10)
-  await sleep(3)
-  await page.keyboard.press("Enter")
-  await sleep(10)
-  await sleep(3)
-  await page.keyboard.press("Enter")
-  await page
-    .getByRole("textbox", { name: "input" })
-    .fill("choose another emitter")
-  await sleep(10)
-  await sleep(3)
-  await page.keyboard.press("Enter")
-  await page.getByRole("textbox", { name: "input" }).fill("OpenAPI Document")
-  await sleep(3)
-  await page.keyboard.press("Enter")
-  await sleep(3)
-  await page.keyboard.press("Enter")
+
+  await emitSelectType(page, "OpenAPI Document")
+
+  await emitSelectLanguageForOpenapi(page)
 
   await preContrastResult(
     page,
