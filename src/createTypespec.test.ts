@@ -8,7 +8,7 @@ import {
   notEmptyFolderContinue,
   installExtension,
 } from "./common/commonSteps"
-import { test } from "./common/utils"
+import { sleep, test } from "./common/utils"
 import fs from "node:fs"
 import path from "node:path"
 import {
@@ -16,6 +16,7 @@ import {
   selectEmitters,
   selectTemplate,
 } from "./common/createSteps"
+import screenshot from "screenshot-desktop"
 
 beforeEach(() => {
   const dir = path.resolve(__dirname, "../CreateTypespecProject")
@@ -35,12 +36,40 @@ test("CreateTypespec-Generic REST API", async ({ launch }) => {
     workspacePath,
   })
   await installExtension(page)
+  let img = await screenshot()
+  let buffer = Buffer.from(img)
+  await sleep(3)
+  fs.writeFileSync(
+    `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/1.png`,
+    buffer
+  )
   await start(page, {
     folderName: "CreateTypespecProject",
     command: "Create Typespec Project",
   })
+  img = await screenshot()
+  buffer = Buffer.from(img)
+  await sleep(3)
+  fs.writeFileSync(
+    `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/2.png`,
+    buffer
+  )
   await selectFolder()
+  img = await screenshot()
+  buffer = Buffer.from(img)
+  await sleep(3)
+  fs.writeFileSync(
+    `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/3.png`,
+    buffer
+  )
   await selectTemplate(page, "Generic REST API")
+  img = await screenshot()
+  buffer = Buffer.from(img)
+  await sleep(3)
+  fs.writeFileSync(
+    `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/4.png`,
+    buffer
+  )
   await inputProjectName(page)
   await selectEmitters(page, ["OpenAPI"])
   await preContrastResult(
