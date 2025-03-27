@@ -18,39 +18,33 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
   const { page } = await launch({
     workspacePath,
   })
-  try {
-    await installExtension(page)
-    await start(page, {
-      folderName: "EmitTypespecProject",
-      command: "Emit from Typespec",
-    })
-    await emitSelectProject(page, "TextTranslation")
+  await installExtension(page)
+  await start(page, {
+    folderName: "EmitTypespecProject",
+    command: "Emit from Typespec",
+  })
+  await emitSelectProject(page, "TextTranslation")
 
-    await page
-      .getByRole("option", { name: "Choose another emitter" })
-      .locator("a")
-      .click()
+  await page
+    .getByRole("option", { name: "Choose another emitter" })
+    .locator("a")
+    .click()
 
-    await emitSelectType(page, "OpenAPI Document")
+  await emitSelectType(page, "OpenAPI Document")
 
-    await emitSelectLanguageForOpenapi(page)
+  await emitSelectLanguageForOpenapi(page)
 
-    await preContrastResult(
-      page,
-      "OpenAPI3...Succeeded",
-      "Failed to emit project Successful",
-      [5, 2]
+  await preContrastResult(
+    page,
+    "OpenAPI3...Succeeded",
+    "Failed to emit project Successful",
+    [5, 2]
+  )
+  await contrastResult(
+    ["openapi.3.0.yaml"],
+    path.resolve(
+      workspacePath,
+      "./Azure.AI.TextTranslation/tsp-output/@typespec/openapi3"
     )
-    await contrastResult(
-      ["openapi.3.0.yaml"],
-      path.resolve(
-        workspacePath,
-        "./Azure.AI.TextTranslation/tsp-output/@typespec/openapi3"
-      )
-    )
-  } catch (error) {
-    console.error(error)
-  } finally {
-    await page.keyboard.press("Alt+F4")
-  }
+  )
 })
