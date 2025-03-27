@@ -3,6 +3,7 @@ import fs from "node:fs"
 import os from "node:os"
 import path, { resolve } from "node:path"
 import { test as baseTest, inject } from "vitest"
+import screenshot from "screenshot-desktop"
 
 interface Context {
   page: Page
@@ -81,4 +82,16 @@ async function retry(
   throw new Error(errMessage)
 }
 
-export { sleep, test, retry }
+async function screenshotSelf(fileName: string, isLocal = false) {
+  if (process.env.CI || isLocal) {
+    await sleep(3)
+    let img = await screenshot()
+    let buffer = Buffer.from(img)
+    fs.writeFileSync(
+      `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/${fileName}.png`,
+      buffer
+    )
+  }
+}
+
+export { sleep, test, retry, screenshotSelf }

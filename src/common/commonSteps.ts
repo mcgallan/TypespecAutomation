@@ -80,7 +80,8 @@ async function selectFolder(file: string = "") {
 }
 
 async function closeVscode(page: Page) {
-  await page.keyboard.press("Alt+F4")
+  await keyboard.pressKey(Key.LeftAlt, Key.F4)
+  await keyboard.releaseKey(Key.LeftAlt, Key.F4)
 }
 
 async function notEmptyFolderContinue(page: Page) {

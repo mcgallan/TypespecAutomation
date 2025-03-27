@@ -1,5 +1,5 @@
 import { beforeEach } from "vitest"
-import { sleep, test } from "./common/utils"
+import { screenshotSelf, sleep, test } from "./common/utils"
 import fs from "node:fs"
 import path from "node:path"
 import {
@@ -50,13 +50,7 @@ test("ImportTypespecFromOpenApi3", async ({ launch }) => {
     folderName: "importTypespecProjectOpenApi3",
     command: "Import TypeSpec from Openapi3",
   })
-  let img = await screenshot()
-  let buffer = Buffer.from(img)
-  await sleep(3)
-  fs.writeFileSync(
-    `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/import_1_${+new Date()}.png`,
-    buffer
-  )
+  await screenshotSelf("importTypespecProjectOpenApi3.png")
   // await selectFolder()
   // let img = await screenshot()
   // let buffer = Buffer.from(img)
