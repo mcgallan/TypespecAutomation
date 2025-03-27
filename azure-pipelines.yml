@@ -21,7 +21,7 @@ steps:
     continueOnError: true
     env:
       BUILD_ARTIFACT_STAGING_DIRECTORY: $(Build.ArtifactStagingDirectory)
-
+      CI: true
   - task: PublishBuildArtifacts@1
     inputs:
       path: "$(Build.ArtifactStagingDirectory)"

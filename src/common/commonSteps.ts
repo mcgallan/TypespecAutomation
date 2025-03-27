@@ -1,7 +1,8 @@
-import { Page } from "@playwright/test"
+import { Locator, Page } from "@playwright/test"
 import { retry, sleep } from "./utils"
 import { keyboard, Key } from "@nut-tree/nut-js"
 import fs from "node:fs"
+import screenshot from "screenshot-desktop"
 
 async function preContrastResult(
   page: Page,
@@ -41,16 +42,24 @@ async function start(
     .getByRole("textbox", { name: "input" })
     .first()
     .fill(`>Typespec: ${command}`)
-  await sleep(10)
-
-  const listForCreate = page
+  let img = await screenshot()
+  let buffer = Buffer.from(img)
+  await sleep(3)
+  fs.writeFileSync(
+    `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/1.png`,
+    buffer
+  )
+  let listForCreate: Locator = page
     .locator("a")
     .filter({ hasText: `TypeSpec: ${command}` })
     .first()
-
   await retry(
     5,
     async () => {
+      listForCreate = page
+        .locator("a")
+        .filter({ hasText: `TypeSpec: ${command}` })
+        .first()
       return (await listForCreate.count()) > 0
     },
     "Failed to find the specified option"
@@ -62,7 +71,9 @@ async function start(
 async function selectFolder(file: string = "") {
   await sleep(10)
   if (file) {
-    await keyboard.pressKey(Key.CapsLock)
+    if (!process.env.CI) {
+      await keyboard.pressKey(Key.CapsLock)
+    }
     await keyboard.type(file)
   }
   await keyboard.pressKey(Key.Enter)
