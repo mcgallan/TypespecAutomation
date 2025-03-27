@@ -40,7 +40,6 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
     "Failed to emit project Successful",
     [5, 2]
   )
-  await closeVscode(page)
   await contrastResult(
     ["openapi.3.0.yaml"],
     path.resolve(

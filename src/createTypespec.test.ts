@@ -78,7 +78,6 @@ test("CreateTypespec-Generic REST API", async ({ launch }) => {
     "Failed to create project Successful",
     [10, 10]
   )
-  await closeVscode(page)
   await contrastResult(
     [
       ".gitignore",
