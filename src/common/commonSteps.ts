@@ -88,6 +88,13 @@ async function notEmptyFolderContinue(page: Page) {
   await retry(
     5,
     async () => {
+      let img = await screenshot()
+      let buffer = Buffer.from(img)
+      await sleep(3)
+      fs.writeFileSync(
+        `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/1.png`,
+        buffer
+      )
       yesBtn = page.locator("a").filter({ hasText: "Yes" }).first()
       return (await yesBtn.count()) > 0
     },
