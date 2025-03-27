@@ -92,7 +92,7 @@ async function notEmptyFolderContinue(page: Page) {
       let buffer = Buffer.from(img)
       await sleep(3)
       fs.writeFileSync(
-        `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/1.png`,
+        `${process.env.BUILD_ARTIFACT_STAGING_DIRECTORY || "."}/yes${+new Date()}.png`,
         buffer
       )
       yesBtn = page.locator("a").filter({ hasText: "Yes" }).first()
