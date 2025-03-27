@@ -84,10 +84,11 @@ async function closeVscode(page: Page) {
 }
 
 async function notEmptyFolderContinue(page: Page) {
-  const yesBtn = page.locator("a").filter({ hasText: "Yes" }).first()
+  let yesBtn = page.locator("a").filter({ hasText: "Yes" }).first()
   await retry(
     5,
     async () => {
+      yesBtn = page.locator("a").filter({ hasText: "Yes" }).first()
       return (await yesBtn.count()) > 0
     },
     "Failed to find yes button",
