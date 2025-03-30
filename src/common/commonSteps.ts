@@ -169,7 +169,7 @@ async function installExtensionForFile(page: Page, fullFilePath: string) {
   await sleep(3)
   await page.keyboard.press("Enter")
   await retry(
-    10,
+    30,
     async () => {
       const installed = await page.getByText(/Completed installing/).first()
       return (await installed.count()) > 0
