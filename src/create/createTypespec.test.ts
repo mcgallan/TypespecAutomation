@@ -1,4 +1,4 @@
-import { beforeEach } from "vitest"
+import { afterAll, afterEach, beforeEach } from "vitest"
 import {
   contrastResult,
   start,
@@ -14,8 +14,9 @@ import {
   selectEmitters,
   selectTemplate,
 } from "../common/createSteps"
+import { Key, keyboard } from "@nut-tree/nut-js"
 
-beforeEach(() => {
+beforeEach(async () => {
   const dir = path.resolve(__dirname, "../../CreateTypespecProject")
   if (fs.existsSync(dir)) {
     for (const file of fs.readdirSync(dir)) {
@@ -27,189 +28,9 @@ beforeEach(() => {
   }
 })
 
-test("CreateTypespec-Generic REST API", async ({ launch }) => {
-  const workspacePath = path.resolve(__dirname, "../../CreateTypespecProject")
-  const { page } = await launch({
-    workspacePath,
-  })
-  await installExtensionForFile(
-    page,
-    path.resolve(__dirname, "../../extension.vsix")
-  )
-
-  await start(page, {
-    folderName: "CreateTypespecProject",
-    command: "Create Typespec Project",
-  })
-  await selectFolder()
-  await selectTemplate(page, "Generic REST API")
-  await inputProjectName(page)
-  await selectEmitters(page, ["OpenAPI"])
-  await preContrastResult(
-    page,
-    "Project created!",
-    "Failed to create project Successful",
-    [10, 10]
-  )
-  await contrastResult(
-    [
-      ".gitignore",
-      "main.tsp",
-      "node_modules",
-      "package-lock.json",
-      "package.json",
-      "tspconfig.yaml",
-    ],
-    workspacePath
-  )
-})
-
-test("CreateTypespec-Generic REST API", async ({ launch }) => {
-  const workspacePath = path.resolve(__dirname, "../../CreateTypespecProject")
-  const { page } = await launch({
-    workspacePath,
-  })
-  await installExtensionForFile(
-    page,
-    path.resolve(__dirname, "../../extension.vsix")
-  )
-
-  await start(page, {
-    folderName: "CreateTypespecProject",
-    command: "Create Typespec Project",
-  })
-  await selectFolder()
-  await selectTemplate(page, "Generic REST API")
-  await inputProjectName(page)
-  await selectEmitters(page, ["OpenAPI"])
-  await preContrastResult(
-    page,
-    "Project created!",
-    "Failed to create project Successful",
-    [10, 10]
-  )
-  await contrastResult(
-    [
-      ".gitignore",
-      "main.tsp",
-      "node_modules",
-      "package-lock.json",
-      "package.json",
-      "tspconfig.yaml",
-    ],
-    workspacePath
-  )
-})
-
-test("CreateTypespec-Generic REST API", async ({ launch }) => {
-  const workspacePath = path.resolve(__dirname, "../../CreateTypespecProject")
-  const { page } = await launch({
-    workspacePath,
-  })
-  await installExtensionForFile(
-    page,
-    path.resolve(__dirname, "../../extension.vsix")
-  )
-
-  await start(page, {
-    folderName: "CreateTypespecProject",
-    command: "Create Typespec Project",
-  })
-  await selectFolder()
-  await selectTemplate(page, "Generic REST API")
-  await inputProjectName(page)
-  await selectEmitters(page, ["OpenAPI"])
-  await preContrastResult(
-    page,
-    "Project created!",
-    "Failed to create project Successful",
-    [10, 10]
-  )
-  await contrastResult(
-    [
-      ".gitignore",
-      "main.tsp",
-      "node_modules",
-      "package-lock.json",
-      "package.json",
-      "tspconfig.yaml",
-    ],
-    workspacePath
-  )
-})
-
-test("CreateTypespec-Generic REST API", async ({ launch }) => {
-  const workspacePath = path.resolve(__dirname, "../../CreateTypespecProject")
-  const { page } = await launch({
-    workspacePath,
-  })
-  await installExtensionForFile(
-    page,
-    path.resolve(__dirname, "../../extension.vsix")
-  )
-
-  await start(page, {
-    folderName: "CreateTypespecProject",
-    command: "Create Typespec Project",
-  })
-  await selectFolder()
-  await selectTemplate(page, "Generic REST API")
-  await inputProjectName(page)
-  await selectEmitters(page, ["OpenAPI"])
-  await preContrastResult(
-    page,
-    "Project created!",
-    "Failed to create project Successful",
-    [10, 10]
-  )
-  await contrastResult(
-    [
-      ".gitignore",
-      "main.tsp",
-      "node_modules",
-      "package-lock.json",
-      "package.json",
-      "tspconfig.yaml",
-    ],
-    workspacePath
-  )
-})
-
-test("CreateTypespec-Generic REST API", async ({ launch }) => {
-  const workspacePath = path.resolve(__dirname, "../../CreateTypespecProject")
-  const { page } = await launch({
-    workspacePath,
-  })
-  await installExtensionForFile(
-    page,
-    path.resolve(__dirname, "../../extension.vsix")
-  )
-
-  await start(page, {
-    folderName: "CreateTypespecProject",
-    command: "Create Typespec Project",
-  })
-  await selectFolder()
-  await selectTemplate(page, "Generic REST API")
-  await inputProjectName(page)
-  await selectEmitters(page, ["OpenAPI"])
-  await preContrastResult(
-    page,
-    "Project created!",
-    "Failed to create project Successful",
-    [10, 10]
-  )
-  await contrastResult(
-    [
-      ".gitignore",
-      "main.tsp",
-      "node_modules",
-      "package-lock.json",
-      "package.json",
-      "tspconfig.yaml",
-    ],
-    workspacePath
-  )
+afterEach(async () => {
+  await keyboard.pressKey(Key.LeftAlt, Key.F4)
+  await keyboard.releaseKey(Key.LeftAlt, Key.F4)
 })
 
 test("CreateTypespec-Generic REST API", async ({ launch }) => {
