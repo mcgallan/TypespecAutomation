@@ -54,11 +54,14 @@ test("EmitTypespec-OpenAPI Document", async ({ launch }) => {
     page,
     path.resolve(__dirname, "../../extension.vsix")
   )
+  await screenshotSelf("installed.png", "emit")
   await start(page, {
     folderName: "EmitTypespecProject",
     command: "Emit from Typespec",
   })
+  await screenshotSelf("started.png", "emit")
   await emitSelectProject(page, "TextTranslation")
+  await screenshotSelf("selected.png", "emit")
 
   await page
     .getByRole("option", { name: "Choose another emitter" })
