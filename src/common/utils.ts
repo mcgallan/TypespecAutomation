@@ -63,7 +63,9 @@ const test = baseTest.extend<{
 })
 
 async function sleep(s: number) {
-  return new Promise((resolve) => setTimeout(resolve, s * 1000))
+  return new Promise((resolve) =>
+    setTimeout(resolve, (process.env.CI ? s + 5 : s) * 1000)
+  )
 }
 
 async function retry(

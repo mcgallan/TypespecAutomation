@@ -5,7 +5,10 @@
   "description": "Typespec UI automation project based on playwright",
   "license": "MIT",
   "scripts": {
-    "test": "vitest --root src"
+    "test": "vitest --root src",
+    "test:create": "vitest --root src/create",
+    "test:import": "vitest --root src/import",
+    "test:emit": "vitest --root src/emit"
   },
   "dependencies": {
     "@autorest/openapi-to-typespec": "0.10.13",
